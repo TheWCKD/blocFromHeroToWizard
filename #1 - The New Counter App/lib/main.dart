@@ -3,7 +3,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:sizer/sizer_util.dart';
+import 'package:sizer/sizer.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
@@ -15,7 +15,7 @@ import 'package:path_provider/path_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
-  HydratedCubit.storage = await HydratedStorage.build(
+  HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
   runApp(
     DevicePreview(
@@ -76,18 +76,19 @@ class _CounterAppState extends State<CounterApp> with WidgetsBindingObserver {
       builder: (context, constraints) {
         return OrientationBuilder(
           builder: (context, orientation) {
-            SizerUtil().init(constraints, orientation);
-            return MaterialApp(
-              builder: DevicePreview.appBuilder,
-              title: Strings.appTitle,
-              theme: AppTheme.lightTheme,
-              darkTheme: AppTheme.darkTheme,
-              themeMode: context.select(
-                  (ThemeCubit themeCubit) => themeCubit.state.themeMode),
-              debugShowCheckedModeBanner: false,
-              initialRoute: AppRouter.counter,
-              onGenerateRoute: AppRouter.onGenerateRoute,
-            );
+            return Sizer(builder: (asd, constraints, orientation) {
+              return MaterialApp(
+                builder: DevicePreview.appBuilder,
+                title: Strings.appTitle,
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode: context.select(
+                    (ThemeCubit themeCubit) => themeCubit.state.themeMode),
+                debugShowCheckedModeBanner: false,
+                initialRoute: AppRouter.counter,
+                onGenerateRoute: AppRouter.onGenerateRoute,
+              );
+            });
           },
         );
       },
