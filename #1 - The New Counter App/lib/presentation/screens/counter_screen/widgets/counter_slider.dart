@@ -49,7 +49,7 @@ class _Stepper2State extends State<CounterSlider>
   Widget build(BuildContext context) {
     return FittedBox(
       child: Container(
-        width: SizerUtil.deviceType == DeviceType.Tablet ? 40.0.w : 55.0.w,
+        width: SizerUtil.deviceType == DeviceType.tablet ? 40.0.w : 55.0.w,
         height: 12.0.h,
         child: Material(
           type: MaterialType.canvas,
@@ -64,7 +64,7 @@ class _Stepper2State extends State<CounterSlider>
                 bottom: null,
                 child: Icon(
                   Icons.remove,
-                  size: SizerUtil.deviceType == DeviceType.Tablet
+                  size: SizerUtil.deviceType == DeviceType.tablet
                       ? 7.0.w
                       : 10.0.w,
                   color: Theme.of(context).iconTheme.color.withOpacity(0.7),
@@ -75,7 +75,7 @@ class _Stepper2State extends State<CounterSlider>
                 top: null,
                 child: Icon(
                   Icons.add,
-                  size: SizerUtil.deviceType == DeviceType.Tablet
+                  size: SizerUtil.deviceType == DeviceType.tablet
                       ? 7.0.w
                       : 10.0.w,
                   color: Theme.of(context).iconTheme.color.withOpacity(0.7),
@@ -96,7 +96,7 @@ class _Stepper2State extends State<CounterSlider>
                       child: Center(
                         child: Icon(
                           Icons.trip_origin,
-                          size: SizerUtil.deviceType == DeviceType.Tablet
+                          size: SizerUtil.deviceType == DeviceType.tablet
                               ? 7.0.w
                               : 10.0.w,
                           color: Theme.of(context)
